@@ -10,13 +10,14 @@
 version = node["mecab"]["version"]
 
 remote_file "#{Chef::Config[:file_cache_path]}/mecab-#{version}.tar.gz" do
+  not_if "which mecab"
   source "http://mecab.googlecode.com/files/mecab-#{version}.tar.gz"
   checksum node['mecab']['checksum']
   mode "0644"
-  not_if { ::File.exists?("/usr/local/bin/mecab") }
 end
 
 bash "build_and_install_mecab" do
+  not_if "which mecab"
   user "root"
   cwd Chef::Config[:file_cache_path]
   code <<-EOH
@@ -24,7 +25,6 @@ bash "build_and_install_mecab" do
     (cd mecab-#{version} && ./configure #{node["mecab"]["configure_options"]})
     (cd mecab-#{version} && make && make check && make install)
   EOH
-  not_if { ::File.exists?("/usr/local/bin/mecab") }
 end
 
 include_recipe "mecab::ipadic"
