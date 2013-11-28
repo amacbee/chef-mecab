@@ -1,7 +1,8 @@
 Mecab Cookbook
 ==============
 日本語形態素解析器 MeCab 用の Cookbook<br/>
-本家: http://mecab.googlecode.com/svn/trunk/mecab/doc/index.html
+本家: http://mecab.googlecode.com/svn/trunk/mecab/doc/index.html <br/>
+辞書としてmecab-ipadicが導入されます．
 
 Usage
 -----
