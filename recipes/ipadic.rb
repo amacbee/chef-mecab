@@ -23,6 +23,11 @@ bash "build_and_install_ipadic" do
     (cd mecab-ipadic-#{version} && ./configure #{node["ipadic"]["configure_options"]})
     (cd mecab-ipadic-#{version} && /usr/local/libexec/mecab/mecab-dict-index -f euc-jp -t utf-8)
     (cd mecab-ipadic-#{version} && make install)
+    rm -rf mecab-ipadic-#{version}
   EOH
   not_if { ::File.exists?("/usr/local/lib/mecab/dic/ipadic") }
+end
+
+file "#{Chef::Config[:file_cache_path]}/mecab-ipadic-#{version}.tar.gz" do
+  action :delete
 end

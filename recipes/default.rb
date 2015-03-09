@@ -24,7 +24,12 @@ bash "build_and_install_mecab" do
     tar -zxf mecab-#{version}.tar.gz
     (cd mecab-#{version} && ./configure #{node["mecab"]["configure_options"]})
     (cd mecab-#{version} && make && make check && make install)
+    rm -rf mecab-#{version}
   EOH
+end
+
+file "#{Chef::Config[:file_cache_path]}/mecab-#{version}.tar.gz" do
+  action :delete
 end
 
 include_recipe "mecab::ipadic"
