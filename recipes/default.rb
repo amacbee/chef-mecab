@@ -27,4 +27,8 @@ bash "build_and_install_mecab" do
   EOH
 end
 
+file "#{Chef::Config[:file_cache_path]}/mecab-#{version}.tar.gz" do
+  action :delete
+end
+
 include_recipe "mecab::ipadic"

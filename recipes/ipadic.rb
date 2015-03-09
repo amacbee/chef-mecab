@@ -26,3 +26,7 @@ bash "build_and_install_ipadic" do
   EOH
   not_if { ::File.exists?("/usr/local/lib/mecab/dic/ipadic") }
 end
+
+file "#{Chef::Config[:file_cache_path]}/mecab-ipadic-#{version}.tar.gz" do
+  action :delete
+end
