@@ -9,7 +9,7 @@
 
 version = node["ipadic"]["version"]
 remote_file "#{Chef::Config[:file_cache_path]}/mecab-ipadic-#{version}.tar.gz" do
-  source "https://mecab.googlecode.com/files/mecab-ipadic-#{version}.tar.gz"
+  source "https://drive.google.com/uc?id=#{node["ipadic"]["download_id"]}"
   checksum node['ipadic']['checksum']
   mode "0644"
   not_if { ::File.exists?("/usr/local/lib/mecab/dic/ipadic") }

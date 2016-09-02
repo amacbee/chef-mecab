@@ -11,7 +11,7 @@ version = node["mecab"]["version"]
 
 remote_file "#{Chef::Config[:file_cache_path]}/mecab-#{version}.tar.gz" do
   not_if "which mecab"
-  source "http://mecab.googlecode.com/files/mecab-#{version}.tar.gz"
+  source "https://drive.google.com/uc?id=#{node["mecab"]["download_id"]}"
   checksum node['mecab']['checksum']
   mode "0644"
 end
